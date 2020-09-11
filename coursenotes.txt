@@ -1,0 +1,111 @@
+Al principio de todo programa de bash tenemos que indicarle al sistema que es un programa de bash.
+
+Tenemos que poner un comentario con lo siguiente:
+#!/bin/bash
+
+^^^^^^^^^^^ Con ese comentario, el interprete del sistema sabra que nos referimos a un programa de shell
+
+echo = Es como un print
+
+
+############################################################################
+Permisos -> numero_de_representación
+
+— -> 0
+–x -> 1
+-w- -> 2
+-wx -> 3
+r-- -> 4
+r-x -> 5
+rw- -> 6
+rwx -> 7
+
+r: permiso de lectura
+w: permiso de escritura
+x: permiso de ejecucion
+
+propietario grupo todos
+owner group anyone
+rwx rwx rwx
+
+Los tipos de permisos más comunes, o su combinación, son los siguiente:
+
+666 ( RW / RW / RW)
+Esta opción permite que todos los usuarios puedan leer y escribir en un archivo.
+
+777 ( RWX / RWX /RWX)
+Esta opción permite que todos los usuarios puedan leer, escribir y ejecutar en el archivo o carpeta
+
+755 (RWX / RW / RW)
+Con este permiso el propietario del archivo puede leer, escribir y ejecutar en el archivo mientras que los demás leer y escribir en el archivo mas no ejecutar.
+
+644 (RW / R / R)
+
+Con este permiso el propietario puede leer y escribir en el archivo mientras los demás solo pueden leer.
+
+700 (RWX /—)
+Con este permiso el propietario tiene el control total del archivo mientras que los demás usuarios no tendrán acceso de ningún tipo al archivo.
+
+
+#######################################################################################################
+
+#   Para ejecutar un programa de bash tenemos dos opciones
+1.- ./nombre_archivo.sh
+2.- bash nombre_archivo.sh
+
+
+#   Debuggear
+
+Podemos usar (CON EL PREFIX BASH) las banderas -v y -x
+
+-x = Muestra la informacion de los comandos que se usan, captura el comando y la salida.
+-v = Muestra el resultado detallado del script, evaluando linea a linea
+
+    ##  Uso:
+    bash -x nombre_scripts.sh
+    bash -v nombre_scripts.sh
+
+#   Capturar datos del usuario
+
+Unas de las opciones más utilizadas para Read
+
+-p: Permite ingresar una frase o prompt antes de pedir el dato.
+-s: Modo Sigiloso. No muestra ningún caracter en la terminal, util para contraseñas o información sensible.
+-n [num]: Permite leer como máximo n caracteres.
+-r: Toma el botón de retroceso o backspace como un caracter y no borra ningun otro caracter previamente escrito.
+
+
+############################################################################################################
+
+
+#   Descargar informacion desde internet.
+
+Para archivos pequeños ~> wget
+Para comunicarse con un servicio (por ejemplo, una API Restful) ~> curl
+Para archivos de tamaño considerable ~> aria2
+
+##############################################################################################################
+    
+#~#~#~#~#~#~#~#~#~#~#~#~    EXPRESIONES CONDICIONALES   ~#~#~#~#~#~#~#~#~#~#~#~#
+
+#   Syntax
+    [ $Nombre_Variable ]
+
+#   Condicionales                               
+
+#   -eq = IGUAL A
+#   -ne = NO ES IGUAL
+#   -gt = MAYOR A
+#   -ge = MAYOR O IGUAL A
+#   -lt = MENOR A
+#   -le = MENOR O IGUAL
+
+### Para comparar cadenas se usa:
+    $Cadena1 = "cadena2"
+
+### Para verificar la existencia de un directorio: 
+    
+    Operador Verdad (TRUE) si:
+    -d fichero fichero existe y es un directorio
+    -e fichero fichero existe
+    -f fichero fichero existe y es un fichero regular (no un directorio, u otro tipo de fichero especial)
